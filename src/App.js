@@ -8,9 +8,9 @@ function App() {
   const [input, setInput] = useState('');
   const [data, setData] = useState({ data: null, type: null });
   let searchType = "";
-
-  const rpcUser = 'user';
-  const rpcPassword = 'pass';
+  
+  const rpcUser = process.env.REACT_APP_RPC_USER;
+  const rpcPassword = process.env.REACT_APP_RPC_PASSWORD;
   const rpcUrl = `http://localhost:3000/wallet/wallet1`;
 
   const getBlockByNumber = async(number) => {
