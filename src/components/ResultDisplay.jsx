@@ -27,7 +27,7 @@ function ResultDisplay({ data, type }) {
     case 'block':
       return <BlockCard number={data.data.input} hash={data.data.response.result}/>;
     case 'unknown':
-      return <div className="valid-query-message">Por favor, insira uma consulta válida.</div>;
+      return <div className="valid-query-message">Invalid input</div>;
     default:
       return <></>;
   }
