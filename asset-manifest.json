@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/btc-explorer/static/css/main.deeb1d96.css",
-    "main.js": "/btc-explorer/static/js/main.52385e83.js",
+    "main.js": "/btc-explorer/static/js/main.11052a63.js",
     "static/js/453.11ae0cf2.chunk.js": "/btc-explorer/static/js/453.11ae0cf2.chunk.js",
     "static/media/Product-Sans-Regular.ttf": "/btc-explorer/static/media/Product-Sans-Regular.d165384076551a756b3c.ttf",
     "static/media/Bitcoin.svg": "/btc-explorer/static/media/Bitcoin.abf77e3d332e95203664eadd467c6459.svg",
     "index.html": "/btc-explorer/index.html",
     "main.deeb1d96.css.map": "/btc-explorer/static/css/main.deeb1d96.css.map",
-    "main.52385e83.js.map": "/btc-explorer/static/js/main.52385e83.js.map",
+    "main.11052a63.js.map": "/btc-explorer/static/js/main.11052a63.js.map",
     "453.11ae0cf2.chunk.js.map": "/btc-explorer/static/js/453.11ae0cf2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.deeb1d96.css",
-    "static/js/main.52385e83.js"
+    "static/js/main.11052a63.js"
   ]
 }
