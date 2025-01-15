@@ -11,7 +11,7 @@ function App() {
 
   const rpcUser = process.env.REACT_APP_RPC_USER;
   const rpcPassword = process.env.REACT_APP_RPC_PASSWORD;
-  const rpcUrl = `${process.env.REACT_APP_RPC_URL}/wallet/wallet1`;
+  const rpcUrl = process.env.REACT_APP_RPC_URL;
 
   const getBlockByNumber = async(number) => {
     searchType = "block";

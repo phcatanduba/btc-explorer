@@ -1,4 +1,5 @@
 import React from 'react';
+import paste from "./paste.png"
 
 function SearchBar({ input, setInput, handleSearch }) {
   return (
@@ -11,7 +12,7 @@ function SearchBar({ input, setInput, handleSearch }) {
         className="search-input"
       />
       <button onClick={() => navigator.clipboard.readText().then(text => setInput(text)).catch(error => console.error('Paste error:', error))} className="paste-button">
-        <img src="paste.png" alt="Paste" className="paste-icon" />
+        <img src={paste} alt="Paste" className="paste-icon" />
       </button>
       <button onClick={handleSearch} className="search-button">Search</button>
     </div>
