@@ -2,12 +2,19 @@ import React from 'react';
 import paste from "./paste.png"
 
 function SearchBar({ input, setInput, handleSearch }) {
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="search-box">
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyPress={handleKeyPress}
         placeholder="Search by Tx hash / Block number / Wallet address"
         className="search-input"
       />

@@ -1,37 +1,37 @@
-# Projeto de Consulta de Blockchain
+# Blockchain Explorer Project
 
-Este projeto visa criar uma aplicação web para consultar informações de uma blockchain, permitindo que os usuários busquem por blocos, transações e endereços específicos.
+This project aims to create a web application for querying blockchain information, allowing users to search for specific blocks, transactions, and addresses.
 
-## Funcionalidades
+## Features
 
-* Consulta de blocos por número
-* Consulta de transações por hash
-* Consulta de saldo por endereço
-* Exibição de informações detalhadas sobre os resultados da consulta
+* Query blocks by number
+* Query transactions by hash
+* Query balance by address
+* Display detailed information about search results
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-* React para a construção da interface de usuário
-* JavaScript para a lógica de negócios e a integração com a API RPC
-* API RPC para a comunicação com a blockchain
+* React for building the user interface
+* JavaScript for business logic and RPC API integration
+* RPC API for blockchain communication
 
-## Configuração
+## Configuration
 
-Para executar este projeto, é necessário ter as seguintes variáveis de ambiente configuradas:
+To run this project, you need to have the following environment variables configured:
 
-* `REACT_APP_RPC_USER`: o nome de usuário para a autenticação RPC
-* `REACT_APP_RPC_PASSWORD`: a senha para a autenticação RPC
+* `REACT_APP_RPC_USER`: username for RPC authentication
+* `REACT_APP_RPC_PASSWORD`: password for RPC authentication
 
-Essas variáveis devem ser definidas em um arquivo `.env` na raiz do projeto.
+These variables should be defined in a `.env` file in the project root.
 
-## Execução
+## Running
 
-Para executar o projeto, execute o comando `npm start` ou `yarn start` na raiz do projeto. Isso irá iniciar a aplicação em modo de desenvolvimento.
+To run the project, execute the command `npm start` or `yarn start` in the project root. This will start the application in development mode.
 
-## Contribuição
+## Contributing
 
-Se você deseja contribuir para este projeto, por favor, faça um fork do repositório e envie um pull request com suas alterações.
+If you wish to contribute to this project, please fork the repository and submit a pull request with your changes.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a Licença MIT.
+This project is licensed under the MIT License.

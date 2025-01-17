@@ -1,0 +1,192 @@
+.mining-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+
+.mining-container h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.mining-description {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.mining-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.mining-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mining-input-group label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.block-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.block-input:focus {
+    outline: none;
+    border-color: rgba(247, 147, 26, 0.5);
+    box-shadow: 0 0 20px rgba(247, 147, 26, 0.1);
+}
+
+.block-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.block-input::-webkit-inner-spin-button,
+.block-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.address-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.address-select:focus {
+    outline: none;
+    border-color: rgba(247, 147, 26, 0.5);
+    box-shadow: 0 0 20px rgba(247, 147, 26, 0.1);
+}
+
+.address-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.address-select option {
+    background-color: #1a1d24;
+    color: white;
+    padding: 0.8rem;
+}
+
+.mine-button {
+    background: #f7931a;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mine-button:hover:not(:disabled) {
+    background: #e88a18;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
+}
+
+.mine-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.mine-button.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.mine-button.loading::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: loading 1.5s infinite;
+}
+
+.mining-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    animation: fadeIn 0.3s ease;
+}
+
+.mining-status.loading {
+    border: 1px solid rgba(247, 147, 26, 0.3);
+    background: rgba(247, 147, 26, 0.1);
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .mining-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .mining-controls {
+        gap: 1rem;
+    }
+}

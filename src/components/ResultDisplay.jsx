@@ -1,36 +1,136 @@
-import React from 'react';
-import BlockCard from './Block';
+import React, { useState } from 'react';
+import './ResultDisplay.css';
 
 function ResultDisplay({ data, type }) {
-  console.log(data)
-  switch (type) {
-    case 'address':
-      return (
-        <>
-          <div>Endereço: {data.data.input}</div>
-          <div>Balance: {data.data.response.result} BTC </div>
-        </>
-      );
-    case 'tx':
-      return (
-        <>
-          <div>Hash: {data.data.input}</div>
-          <div>Block: {data.data.response.result.blockhash}</div>
-          <div>Confirmations: {data.data.response.result.confirmations}</div>
-          <div>Time: {new Date(data.data.response.result.time * 1000).toUTCString()}</div>
-          <div>Inputs: {data.data.response.result.vin.length}</div>
-          <div>Outputs: {data.data.response.result.vout.length}</div>
-          <div>Recipient: {data.data.response.result.vout[0].scriptPubKey.address}</div>
-          <div>Amount Transferred: {data.data.response.result.vout[0].value} BTC</div>
-        </>
-      );
-    case 'block':
-      return <BlockCard number={data.data.input} hash={data.data.response.result}/>;
-    case 'unknown':
-      return <div className="valid-query-message">Invalid input</div>;
-    default:
-      return <></>;
-  }
+  const [copiedField, setCopiedField] = useState(null);
+
+  if (!data || !data.data) return null;
+
+  const copyToClipboard = (text, field) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  const ResultItem = ({ label, value, highlight, copyable }) => (
+    <div className="result-item">
+      <div className="result-label">{label}</div>
+      <div className={`result-value ${highlight ? 'highlight' : ''}`}>
+        {value}
+        {copyable && (
+          <button
+            className={`copy-button ${copiedField === label ? 'copied' : ''}`}
+            onClick={() => copyToClipboard(value, label)}
+          >
+            {copiedField === label ? '✓' : 'Copy'}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  const renderContent = () => {
+    switch (type) {
+      case 'address':
+        return (
+          <div className="result-grid">
+            <ResultItem
+              label="Address"
+              value={data.data.input}
+              copyable
+            />
+            <ResultItem
+              label="Balance"
+              value={`${data.data.response.result} BTC`}
+              highlight
+            />
+          </div>
+        );
+      case 'tx':
+        return (
+          <div className="result-grid">
+            <ResultItem
+              label="Transaction Hash"
+              value={data.data.input}
+              copyable
+            />
+            <ResultItem
+              label="Block Hash"
+              value={data.data.response.result.blockhash}
+              copyable
+            />
+            <ResultItem
+              label="Confirmations"
+              value={data.data.response.result.confirmations}
+              highlight
+            />
+            <ResultItem
+              label="Time"
+              value={new Date(data.data.response.result.time * 1000).toUTCString()}
+            />
+            <ResultItem
+              label="Inputs"
+              value={data.data.response.result.vin.length}
+            />
+            <ResultItem
+              label="Outputs"
+              value={data.data.response.result.vout.length}
+            />
+            <ResultItem
+              label="Recipient"
+              value={data.data.response.result.vout[0].scriptPubKey.address}
+              copyable
+            />
+            <ResultItem
+              label="Amount"
+              value={`${data.data.response.result.vout[0].value} BTC`}
+              highlight
+            />
+          </div>
+        );
+      case 'block':
+        return (
+          <div className="result-grid">
+            <ResultItem
+              label="Block Number"
+              value={data.data.input}
+              highlight
+            />
+            <ResultItem
+              label="Block Hash"
+              value={data.data.response.result}
+              copyable
+            />
+          </div>
+        );
+      case 'unknown':
+        return <div className="error-message">Invalid input</div>;
+      default:
+        return null;
+    }
+  };
+
+  const getTypeLabel = () => {
+    switch (type) {
+      case 'address':
+        return 'Wallet Address';
+      case 'tx':
+        return 'Transaction';
+      case 'block':
+        return 'Block';
+      default:
+        return 'Result';
+    }
+  };
+
+  return (
+    <div className="result-container">
+      <div className="result-header">
+        <div className="result-type-badge">{getTypeLabel()}</div>
+      </div>
+      {renderContent()}
+    </div>
+  );
 }
 
 export default ResultDisplay;
