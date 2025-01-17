@@ -37,10 +37,19 @@ function App() {
     searchType = "address";
     const method = 'getreceivedbyaddress';
     const params = [address, 0];
-    getBlockchainInfo(method, params);
+    const selectedWallet = localStorage.getItem('selectedWallet');
+    if (!selectedWallet) {
+      setData({ 
+        data: null, 
+        type: 'unknown', 
+        error: 'Please select a wallet first in the Wallet tab' 
+      });
+      return;
+    }
+    getBlockchainInfo(method, params, selectedWallet);
   };
 
-  const getBlockchainInfo = async (method, params) => {
+  const getBlockchainInfo = async (method, params, wallet = null) => {
     const data = {
         jsonrpc: '1.0',
         id: 'curltest',
@@ -49,7 +58,12 @@ function App() {
     };
 
     try {
-        const response = await fetch(rpcUrl, {
+        let url = rpcUrl;
+        if (wallet) {
+            url = `${rpcUrl}wallet/${wallet}`;
+        }
+
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,8 +81,13 @@ function App() {
         setData({ data: {input: input, response: jsonResponse}, type: searchType })
     } catch (error) {
         console.error('Error making RPC call:', error);
+        setData({ 
+          data: null, 
+          type: 'unknown', 
+          error: error.message 
+        });
     }
-};
+  };
 
   const handleSearch = () => {
     if (input.startsWith('bcrt')) {

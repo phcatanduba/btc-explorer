@@ -8,7 +8,9 @@ function Wallet() {
     const [walletName, setWalletName] = useState('');
     const [walletInfo, setWalletInfo] = useState(null);
     const [wallets, setWallets] = useState([]);
-    const [selectedWallet, setSelectedWallet] = useState('');
+    const [selectedWallet, setSelectedWallet] = useState(() => {
+        return localStorage.getItem('selectedWallet') || '';
+    });
     const [newAddress, setNewAddress] = useState('');
     const [sendAmount, setSendAmount] = useState('');
     const [recipientAddress, setRecipientAddress] = useState('');
@@ -20,7 +22,12 @@ function Wallet() {
 
     const makeRpcCall = async (method, params = []) => {
         try {
-            const response = await fetch(rpcUrl, {
+            let url = rpcUrl;
+            if (selectedWallet && method !== 'listwallets' && method !== 'createwallet') {
+                url = `${rpcUrl}wallet/${selectedWallet}`;
+            }
+
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +72,6 @@ function Wallet() {
         
         try {
             setLoading(true);
-            await makeRpcCall('loadwallet', [selectedWallet]);
             const info = await makeRpcCall('getwalletinfo');
             setWalletInfo(info);
             setError(null);
@@ -82,7 +88,10 @@ function Wallet() {
 
     useEffect(() => {
         if (selectedWallet) {
+            localStorage.setItem('selectedWallet', selectedWallet);
             loadWalletInfo();
+        } else {
+            localStorage.removeItem('selectedWallet');
         }
     }, [selectedWallet]);
 
